@@ -1,4 +1,4 @@
-# Azure App Registration Info Script
+# 1. Azure App Registration Info Script in Az Cli
 
 This repository contains an Az cli script to fetch basic information about Azure App Registrations using Azure CLI. The script gathers key details basic non-sensitive information such as API permissions for a list of App Registration (client) IDs.
 
@@ -44,6 +44,40 @@ For each App Registration, the script collects:
   - Type (Delegated/Application)  
   - Description  
   - Admin consent required  
+
+
+
+# 2. Alternative scripts in PowerShell (Getting there in a different path)
+
+A PowerShell script using Microsoft Graph PowerShell SDK to export app registration info to CSV, including:
+
+- **Application Name, ID, and Notes**
+- **API Permissions:** With resolved names, types, and admin consent requirements
+- **Secrets:** Name, start and end date
+- **Owners:** Display name and user principal name
+- **Other metadata:** SNOW Ref, Service Management Reference
+
+
+
+#### Usage
+
+1. **Install MgGraph Ps sdk**  
+   ```powershell
+   Install-Module Microsoft.Graph -Scope CurrentUser
+   ```
+
+2. **Run the script**  
+   ```powershell
+   .\get_appreg_graph.ps1 -ApptoSearch "<search string>"
+   ```
+
+   in Azure Bash cloud shell it will be 
+   ```powershell
+   pwsh ./EntraID_SPECIFICAppRegs_NoPrompt.ps1 -ApptoSearch "<search string>"
+   ```
+
+3. **Output**  
+   The script will export a CSV file to your Downloads folder with all relevant app registration details.
 
 ## Notes
 - The script may take a couple of minutes to run if you have many App Registrations or permissions.
